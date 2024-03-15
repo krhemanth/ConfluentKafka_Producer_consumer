@@ -1,0 +1,52 @@
+{
+  "loanDetails": {
+    "midasId": "MIDAS123",
+    "loanType": "Housing Mortgage",
+    "borrower": {
+      "name": "John Doe",
+      "dob": "1980-01-01",
+      "ssn": "123-45-6789",
+      "address": {
+        "street": "123 Main St",
+        "city": "Anytown",
+        "state": "CA",
+        "zipCode": "12345"
+      }
+    },
+    "loanAmount": 300000,
+    "interestRate": 3.5,
+    "termInYears": 30,
+    "ltvRatio": 80,
+    "propertyDetails": {
+      "address": {
+        "street": "456 Oak Ave",
+        "city": "Suburbia",
+        "state": "CA",
+        "zipCode": "56789"
+      },
+      "appraisalValue": 375000,
+      "propertyType": "Single-Family Home"
+    },
+    "employmentDetails": {
+      "employer": "ABC Corporation",
+      "income": 80000,
+      "employmentDurationMonths": 24
+    }
+  },
+  "additionalInfo": {
+    "loanId": "L123456",
+    "creditScore": 750,
+    "employmentHistory": "Stable employment with consistent income",
+    "loanPurpose": "Purchase of primary residence",
+    "otherAssets": [
+      {"type": "Savings", "value": 20000},
+      {"type": "Stocks", "value": 15000}
+    ]
+  },
+  "contractDetails": {
+    "contractId": "C789012",
+    "interestType": "Fixed",
+    "monthlyPayment": 1500,
+    "dueDate": "2024-02-01"
+  }
+}

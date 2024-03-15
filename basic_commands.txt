@@ -1,0 +1,94 @@
+Kafka Commands:
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+kafka-topics.bat --list --bootstrap-server localhost:9092
+kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 --topic loan-status
+kafka-topics.bat --describe --topic loan-status --bootstrap-server localhost:9092
+kafka-topics.bat --delete --topic loan-status --bootstrap-server localhost:9092
+
+kafka-console-producer.bat --broker-list localhost:9092 --topic loan-status
+
+-------------------------------------------------
+Sample Data:
+
+{"Name: "John", "Age":"31", "Gender":"Male"}
+{"Name: "Emma", "Age":"27", "Gender":"Female"}
+{"Name: "Ronald", "Age":"17", "Gender":"Male"}
+------------------------------------------------
+
+kafka-console-consumer.bat --topic loan-status --bootstrap-server localhost:9092 --from-beginning
+kafka-console-consumer.bat --topic __consumer_offsets --bootstrap-server localhost:9092 --from-beginning
+
+.\bin\windows\zookeeper-server-stop.bat .\config\zookeeper.properties
+.\bin\windows\kafka-server-stop.bat .\config\server.properties
+--------------------------------------------------------------------------------------------------------------------------------
+Confluent Commands:
+
+confluent local services start
+
+kafka-topics --list --bootstrap-server localhost:9092
+kafka-topics --create --topic loan-status --partitions 1 --replication-factor 1 --bootstrap-server localhost:9092
+kafka-topics --describe --topic loan-status --bootstrap-server localhost:9092
+kafka-topics --delete --topic loan-status --bootstrap-server localhost:9092
+
+
+kafka-console-producer --bootstrap-server localhost:9092 --topic loan-status --property parse.key=true --property key.separator=:
+kafka-console-producer --topic loan-status --broker-list localhost:9092
+kafka-console-consumer --topic loan-status --from-beginning --bootstrap-server localhost:9092
+
+confluent local services stop
+confluent local destroy
+-----------------------------------------------------------------------------------------------------------------------------
+confluent troubleshoot:
+
+nano /home/hemanth/confluent-7.5.2/etc/kafka/server.properties
+
+listeners=PLAINTEXT://0.0.0.0:9092
+advertised.listeners=PLAINTEXT://localhost:9092
+
+
+listeners=PLAINTEXT://[::1]:9092
+advertised.listeners=PLAINTEXT://192.168.1.161:9092
+
+ip addr | grep "eth0"
+netsh interface portproxy add v4tov4 listenport=9092 listenaddress=0.0.0.0 connectport=9092 connectaddress=172.18.102.185
+netsh interface portproxy delete v4tov4 listenport=9092 listenaddress=0.0.0.0
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+MongoDB : mongodb://localhost:27017
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+netstat -ano | findstr : port number
+taskkill /PID typeyourPIDhere /F
+
+My windows IP -> 192.168.1.161:9092
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Kafka over AMQ
+- log-based model(durability and Retension) vs message-oriented model
+- Distributed and high throughput(scales horizontally) vs vertically
+- Fault tolerant(Replication) 
+- Kafka streaming
+
+Confluent over Kafka
+- cloud
+- Connectors
+- Ksql(streaming SQL)
+- Schema Registry
+- kafka streaming pipeline
+- UI
+
+Kafka is distributed event streaming platform
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
